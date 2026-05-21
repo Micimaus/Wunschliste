@@ -57,17 +57,12 @@ a.button {
   text-align: center;
 }
 
-.favorite {
-  position: relative;
-}
-
 .heart {
   position: absolute;
   top: 10px;
   right: 10px;
   font-size: 22px;
-  cursor: pointer;
-  user-select: none;
+}t: none;
 }
 
 .heart.active {
@@ -83,7 +78,7 @@ a.button {
 <div class="grid">
 
  <div class="item favorite" data-id="chair">
-  <div class="heart" onclick="toggleFav(this)">♡</div>
+<div class="heart">❤️</div>
     <img src="https://m.media-amazon.com/images/I/613VjF6FGTL._AC_SL1500_.jpg">
     <h3>Bürostuhl beige oder schwarz</h3>
     <div class="price">ca. 390 €</div>
@@ -91,7 +86,7 @@ a.button {
   </div>
 
    <div class="item favorite" data-id="water">
-  <div class="heart" onclick="toggleFav(this)">♡</div>
+<div class="heart">❤️</div>
     <img src="https://m.media-amazon.com/images/I/71lTFbr6tPL._AC_SL1500_.jpg">
     <h3>Heißwasserspender</h3>
     <div class="price">ca. 105 €</div>
@@ -99,7 +94,7 @@ a.button {
   </div>
 
   <div class="item favorite" data-id="bookbook">
-  <div class="heart" onclick="toggleFav(this)">♡</div>
+<div class="heart">♡</div>
     <img src="https://m.media-amazon.com/images/I/81Gso3zbVBL._SL1500_.jpg">
     <h3>Buch auf deutsch</h3>
     <div class="price">ca. 120 €</div>
@@ -107,7 +102,7 @@ a.button {
   </div>
 
      <div class="item favorite" data-id="ear">
-  <div class="heart" onclick="toggleFav(this)">♡</div>
+<div class="heart">♡</div>
     <img src="https://m.media-amazon.com/images/I/61b3YpDzxML._AC_SL1500_.jpg">
     <h3>Ohrstöpsel geräuschunterdrückend grün</h3>
     <div class="price">ca. 55 €</div>
@@ -115,7 +110,7 @@ a.button {
   </div>
 
        <div class="item favorite" data-id="coffee">
-  <div class="heart" onclick="toggleFav(this)">♡</div>
+<div class="heart">♡</div>
     <img src="https://m.media-amazon.com/images/I/61XrgBDkS6L._AC_SL1400_.jpg">
    <h3>Kaffeemaschine Ninja Luxe Premier</h3>
         <div class="price">ca. 400 €</div>
@@ -123,7 +118,7 @@ a.button {
   </div>
 
   <div class="item favorite" data-id="seat">
-  <div class="heart" onclick="toggleFav(this)">♡</div>
+<div class="heart">♡</div>
     <img src="https://m.media-amazon.com/images/I/810Mmw89VsL._AC_SL1500_.jpg">
     <h3>Hängesessel</h3>
     <div class="price">ca. 115 €</div>
@@ -131,7 +126,7 @@ a.button {
   </div>
 
 <div class="item favorite" data-id="book">
-  <div class="heart" onclick="toggleFav(this)">♡</div>
+<div class="heart">♡</div>
     <img src="https://m.media-amazon.com/images/I/B18drMdZ1oS._SL1500_.jpg">
     <h3>Buchreihe "Rad der Zeit"</h3>
     <div class="price">ca. 330 €</div>
@@ -139,7 +134,7 @@ a.button {
   </div>
 
 <div class="item favorite" data-id="printer">
-  <div class="heart" onclick="toggleFav(this)">♡</div>
+<div class="heart">♡</div>
     <img src="https://store.bblcdn.eu/s8/default/c788c7aaa7fd4608a58867154029d5b0/P2S.jpg__op__resize,m_lfit,w_750__op__format,f_auto__op__quality,q_80">
     <h3>3D Drucker</h3>
     <div class="price">ca. 520 €</div>
@@ -147,7 +142,7 @@ a.button {
   </div>
 
   <div class="item favorite" data-id="hobby">
-  <div class="heart" onclick="toggleFav(this)">♡</div>
+<div class="heart">♡</div>
     <img src="https://m.media-amazon.com/images/I/81YLWBlBQOL._SL1500_.jpg">
     <h3>Hobbybuch</h3>
     <div class="price">ca. 50 €</div>
@@ -155,7 +150,7 @@ a.button {
   </div>
 
   <div class="item favorite" data-id="charge">
-  <div class="heart" onclick="toggleFav(this)">♡</div>
+<div class="heart">♡</div>
     <img src="https://m.media-amazon.com/images/I/718Z6cbyGaL._AC_SL1500_.jpg">
     <h3>Ladestation</h3>
     <div class="price">ca. 50 €</div>
@@ -163,46 +158,13 @@ a.button {
   </div>
 
 <div class="item favorite" data-id="money">
-  <div class="heart" onclick="toggleFav(this)">♡</div>
+<div class="heart">♡</div>
   <img src="https://www.bundesbank.de/resource/blob/760384/b0baad00977de5e52d731b5b31147021/472B63F073F071307366337C94F8C870/100-es2-vorn-data.jpg">
   <h3>Bargeld für Ausflug</h3>
   <div class="price">Divers</div>
 </div>
 
 </div>
-
-<script>
-function toggleFav(el) {
-  const item = el.closest(".item");
-  const id = item.dataset.id;
-
-  el.classList.toggle("active");
-
-  let favs = JSON.parse(localStorage.getItem("favs") || "[]");
-
-  if (favs.includes(id)) {
-    favs = favs.filter(f => f !== id);
-  } else {
-    favs.push(id);
-  }
-
-  localStorage.setItem("favs", JSON.stringify(favs));
-}
-
-// beim Laden Favoriten wiederherstellen
-window.onload = function() {
-  const favs = JSON.parse(localStorage.getItem("favs") || "[]");
-
-  favs.forEach(id => {
-    const item = document.querySelector(`[data-id="${id}"]`);
-    if (item) {
-      const heart = item.querySelector(".heart");
-      heart.classList.add("active");
-      heart.textContent = "❤️";
-    }
-  });
-};
-</script>
 
 </body>
 </html>
